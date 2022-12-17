@@ -23,7 +23,7 @@ galleryContainer.insertAdjacentHTML('beforeend', markup);
 galleryContainer.addEventListener('click', event => {
   event.preventDefault();
 
-  if (event.target.nodeName !== "IMG") {
+  if (event.target.nodeName !== 'IMG') {
     return;
   }
 
@@ -31,9 +31,13 @@ galleryContainer.addEventListener('click', event => {
 
   const instance = basicLightbox.create(`
   <img src="${originalImage}" width="800" height="600">
-`)
+`);
 
-instance.show()
+  instance.show();
 
+  galleryContainer.addEventListener('keydown', event => {
+    if (event.keyCode === 27) {
+      instance.close();
+    }
+  });
 });
-
